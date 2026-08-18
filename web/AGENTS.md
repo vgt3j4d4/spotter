@@ -81,6 +81,38 @@ preference is applied **only** at the display edge, through the shared pipes.
 
 See [ADR 0004](../docs/decisions/0004-store-measurements-in-canonical-units.md).
 
+## Colour and design tokens
+
+The palette is the gym's own black and red. Full system in
+[`docs/design.md`](../docs/design.md) — read it before writing any colour.
+
+**Never write a hex value in a component.** Every colour comes from a token.
+
+There are **three reds** and using the wrong one is the mistake to expect:
+
+| Token | Value | Use |
+|---|---|---|
+| `--red-brand` | `#E83643` | Identity — large fills, chips with dark text, focus rings. **Never small text**: it is 4.17:1 on white and fails AA |
+| `--red-action` | `#D8232F` | Filled buttons with white labels, links, red text on light grounds |
+| `--red-on-dark` | `#F0525C` | Everything red in dark mode |
+
+**Errors are never a filled red shape.** Brand red is filled; an error is a tinted surface
+with a left border, an icon and a sentence. Different silhouette, because two reds are not
+distinguishable under gym lighting — and because WCAG 1.4.1 forbids colour as the sole
+carrier of meaning.
+
+**Red is roughly 5% of the screen.** The working interface is black, white and grey. If a
+screen has more than one red element competing for attention, one of them is wrong. Do not
+add red fills, gradients or glows.
+
+**Theming is system-driven with no toggle.** Follow `prefers-color-scheme`. Do not build a
+theme picker — it is deliberately deferred. Do not define a colour only inside the media
+query; every token is declared on the bare `:root` first.
+
+**Type is Barlow Condensed for headings and Barlow for body.** Every number the trainer
+reads gets `font-variant-numeric: tabular-nums`, so digits do not shift the layout as the
+value changes.
+
 ## Accessibility
 
 Angular Material gives you a lot of this free — do not undo it.

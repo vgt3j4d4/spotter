@@ -68,6 +68,7 @@ Full setup, test commands and troubleshooting are in
 | [API](docs/api.md) | Endpoints, error contract, authentication |
 | [Development](docs/development.md) | Local setup, running tests, conventions |
 | [Testing](docs/testing.md) | What gets tested, at which level, and when |
+| [Design](docs/design.md) | Palette, tokens, type, density, the error-state rule |
 | [Roadmap](docs/roadmap.md) | Milestones and what ships when |
 | [Decisions](docs/decisions/) | Architecture decision records |
 
