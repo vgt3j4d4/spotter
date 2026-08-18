@@ -1,0 +1,28 @@
+name: spotter
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: spotter-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-spotter}
+      POSTGRES_USER: ${POSTGRES_USER:-spotter}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-spotter}
+    ports:
+      - "${POSTGRES_PORT:-5435}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      # api/ will depend on this with condition: service_healthy. Without it the
+      # API starts before Postgres accepts connections and Flyway fails on boot.
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-spotter} -d ${POSTGRES_DB:-spotter}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  # Named volume, not a bind mount. Bind-mounting Postgres data on macOS gives you
+  # poor IO and UID-mapping problems that look like corruption.
+  db-data:

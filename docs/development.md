@@ -11,7 +11,7 @@
 ## Running locally
 
 ```bash
-docker compose up -d              # PostgreSQL on :5432
+docker compose up -d              # PostgreSQL on :5435
 ./api/mvnw spring-boot:run        # API on :8080, Flyway migrates on boot
 npm --prefix web install
 npm --prefix web start            # Angular dev server on :4200, proxied to :8080
@@ -28,12 +28,26 @@ Local defaults live in `api/src/main/resources/application-local.yaml` and are c
 because they point at a throwaway container. Anything secret is read from the environment
 and has no committed default:
 
-| Variable | Purpose |
-|---|---|
-| `SPOTTER_JWT_SECRET` | Signing key for trainer tokens |
-| `SPOTTER_DB_URL` / `_USER` / `_PASSWORD` | Overrides the compose defaults |
+```bash
+cp .env.example .env
+```
 
-There is no `.env` in git. `.env.example` documents the shape.
+| Variable | Read by | Purpose |
+|---|---|---|
+| `POSTGRES_DB` / `_USER` / `_PASSWORD` | compose | Database created on first boot. Committed defaults — a throwaway container |
+| `POSTGRES_PORT` | compose | Host port, defaulting to **5435**. 5432–5434 are commonly taken by other local Postgres containers |
+| `SPOTTER_JWT_SECRET` | `api/` | Signing key. **No default** — `openssl rand -base64 48` |
+
+There is no `.env` in git; `.env.example` documents the shape. The rule is that anything
+harmless enough to commit has a default, and anything that is a secret has none — so a
+missing secret fails loudly at boot rather than falling back to something guessable.
+
+The volume is named `spotter_db-data` and survives `docker compose down`. To start from an
+empty database:
+
+```bash
+docker compose down -v
+```
 
 ## Tests
 
