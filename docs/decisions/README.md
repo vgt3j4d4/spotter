@@ -16,3 +16,4 @@ worth more than the absence of the mistake.
 | [0004](0004-store-measurements-in-canonical-units.md) | Store measurements in canonical units | Accepted |
 | [0005](0005-two-branch-model-develop-and-main.md) | Two-branch model: `develop` and `main` | Accepted |
 | [0006](0006-house-colours-as-the-palette.md) | House colours as the palette | Accepted |
+| [0007](0007-aws-in-two-shapes.md) | AWS in two shapes, not two clouds | Accepted |
