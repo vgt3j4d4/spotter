@@ -27,7 +27,7 @@ last Tuesday.
 | Charts | Chart.js via `ng2-charts` |
 | Dates | `date-fns` |
 | API | Spring Boot 3, Java 21 |
-| Persistence | PostgreSQL 16, Spring Data JPA, Flyway |
+| Persistence | PostgreSQL 17, Spring Data JPA, Flyway |
 | Auth | Spring Security, JWT for trainers; signed tokens for athlete links |
 | Validation | `jakarta.validation` |
 | Errors | RFC 9457 Problem Details |
