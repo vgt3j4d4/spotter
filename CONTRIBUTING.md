@@ -84,6 +84,9 @@ Squash-merge. The PR title becomes the commit message, so write it as one.
 
 Run them before you open the PR — CI running them is not a substitute for you knowing.
 
+**Tests ship with the feature, in the same PR.** What belongs at which level is in
+[`docs/testing.md`](docs/testing.md); read it before writing the first one.
+
 ```bash
 ./api/mvnw test                     # unit
 ./api/mvnw verify                   # + Testcontainers integration

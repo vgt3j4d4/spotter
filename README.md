@@ -67,12 +67,14 @@ Full setup, test commands and troubleshooting are in
 | [Data model](docs/data-model.md) | Tables, relationships, and why the schema is shaped this way |
 | [API](docs/api.md) | Endpoints, error contract, authentication |
 | [Development](docs/development.md) | Local setup, running tests, conventions |
+| [Testing](docs/testing.md) | What gets tested, at which level, and when |
 | [Roadmap](docs/roadmap.md) | Milestones and what ships when |
 | [Decisions](docs/decisions/) | Architecture decision records |
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md). AI coding agents should read
+[AGENTS.md](AGENTS.md), plus the one in whichever of `api/` or `web/` they are working in.
 
 ## Licence
 
