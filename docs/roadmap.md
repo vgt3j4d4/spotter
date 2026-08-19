@@ -14,7 +14,7 @@ this page explains the ordering.
 | S6 | Athlete sharing | 3 | The link the athlete opens |
 | S7 | PWA & mobile | 3 | Installable, one-handed, survives bad signal |
 | S8 | Testing & polish | 7 | Test suite, accessibility, demo data, README |
-| S9 | AWS migration | 3 | Post-launch — ECS Fargate and RDS |
+| S9 | AWS migration | 3 | Post-launch — ECS Fargate + ALB, documented, then torn down |
 
 ## Why this order
 
@@ -45,10 +45,17 @@ accident — which is exactly how that decision got made. See
 E2E tests written against the non-PWA build. Writing the suite after means writing it
 once.
 
-**S9 is after launch, not before.** Fly.io gets the app in front of a real user in a
-weekend. AWS is the migration that demonstrates ECS, RDS and a real infrastructure story —
-worth doing, worth doing *second*. Nobody is helped by an app that is architecturally
-ready for scale and not yet usable by the one person who asked for it.
+**S9 is after launch, not before.** S1 already deploys to AWS — a single EC2 instance with
+Caddy and RDS, live in a day for around $10–15/month. S9 rebuilds that as ECS Fargate behind
+an ALB, as infrastructure-as-code, then tears it down and leaves the cheap instance serving
+the demo.
+
+Doing it in that order is deliberate. An ALB is ~$18/month and a NAT gateway ~$32/month,
+neither free-tier eligible, so the textbook shape costs ~$50/month before a container runs —
+and one to two weeks of VPC and IAM work would stand between this project and its first
+deploy. Nobody is helped by an app that is architecturally ready for scale and not yet usable
+by the one person who asked for it. See
+[ADR 0007](decisions/0007-aws-in-two-shapes.md).
 
 ## Definition of done
 

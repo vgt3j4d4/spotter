@@ -14,7 +14,7 @@ Two deployables and a database.
 ```
 
 The frontend is a static bundle. The API is stateless — no server session, no sticky
-routing — which is what makes horizontal scaling and the eventual ECS migration boring
+routing — which is what makes horizontal scaling and the S9 ECS migration boring
 rather than interesting.
 
 ## Modules in the API

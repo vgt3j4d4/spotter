@@ -36,7 +36,7 @@ last Tuesday.
 | Testing | JUnit 5, Mockito, Testcontainers, Playwright |
 | Local dev | Docker Compose |
 | CI | GitHub Actions |
-| Hosting | Fly.io, migrating to AWS (ECS Fargate + RDS) post-launch |
+| Hosting | AWS — one EC2 instance with Caddy and RDS; ECS Fargate + ALB as a documented S9 exercise |
 
 ## Layout
 
